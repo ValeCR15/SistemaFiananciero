@@ -1,0 +1,32 @@
+﻿@model SistemaFinanciero.Models.TipoSolicitud
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h2>Details</h2>
+        <hr />
+        <h4>TipoSolicitud</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-danger" })
+            </div>
+        }
+    </div>
+</div>

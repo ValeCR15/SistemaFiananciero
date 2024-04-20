@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SistemaFinancieroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CuentaContable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_solicitud" Type="DateTime" Precision="3" />
+    <Property Name="MedioEnvio" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="EntidadSolicitante" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Justificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="TipoSolicitud_id" Type="Int32" Nullable="false" />
+    <Property Name="TipoMoneda_id" Type="Int32" Nullable="false" />
+    <Property Name="TipoRegistro_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipoMoneda" Relationship="Self.FK__CuentaCon__TipoM__34C8D9D1" FromRole="CuentaContable" ToRole="TipoMoneda" />
+    <NavigationProperty Name="TipoReflejar" Relationship="Self.FK__CuentaCon__TipoR__35BCFE0A" FromRole="CuentaContable" ToRole="TipoReflejar" />
+    <NavigationProperty Name="TipoSolicitud" Relationship="Self.FK__CuentaCon__TipoS__33D4B598" FromRole="CuentaContable" ToRole="TipoSolicitud" />
+    <NavigationProperty Name="OrdenProduccions" Relationship="Self.FK__OrdenProd__cuent__3A81B327" FromRole="CuentaContable" ToRole="OrdenProduccion" />
+    <NavigationProperty Name="ProyeccionGastos" Relationship="Self.FK__Proyeccio__cuent__48CFD27E" FromRole="CuentaContable" ToRole="ProyeccionGastos" />
+    <NavigationProperty Name="ProyeccionVentas" Relationship="Self.FK__Proyeccio__cuent__4D94879B" FromRole="CuentaContable" ToRole="ProyeccionVentas" />
+    <NavigationProperty Name="RegistroGastos" Relationship="Self.FK__RegistroG__cuent__3F466844" FromRole="CuentaContable" ToRole="RegistroGastos" />
+    <NavigationProperty Name="RegistroVentas" Relationship="Self.FK__RegistroV__cuent__440B1D61" FromRole="CuentaContable" ToRole="RegistroVentas" />
+  </EntityType>
+  <EntityType Name="OrdenProduccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+    <Property Name="costo_total" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cuenta_contable_id" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CuentaContable" Relationship="Self.FK__OrdenProd__cuent__3A81B327" FromRole="OrdenProduccion" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="idCedula" />
+    </Key>
+    <Property Name="idCedula" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechadenacimiento" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__fecha_a__300424B4" FromRole="Persona" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="ProyeccionGasto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="monto_proyectado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cuenta_contable_id" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CuentaContable" Relationship="Self.FK__Proyeccio__cuent__48CFD27E" FromRole="ProyeccionGastos" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="ProyeccionVenta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="monto_proyectado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="producto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cuenta_contable_id" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CuentaContable" Relationship="Self.FK__Proyeccio__cuent__4D94879B" FromRole="ProyeccionVentas" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="RegistroGasto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cuenta_contable_id" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CuentaContable" Relationship="Self.FK__RegistroG__cuent__3F466844" FromRole="RegistroGastos" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="RegistroVenta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cuenta_contable_id" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CuentaContable" Relationship="Self.FK__RegistroV__cuent__440B1D61" FromRole="RegistroVentas" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuario__rol_id__30F848ED" FromRole="Rol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="TipoMoneda">
+    <Key>
+      <PropertyRef Name="idTipoMoneda" />
+    </Key>
+    <Property Name="idTipoMoneda" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CuentaContables" Relationship="Self.FK__CuentaCon__TipoM__34C8D9D1" FromRole="TipoMoneda" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="TipoReflejar">
+    <Key>
+      <PropertyRef Name="idTiporegistro" />
+    </Key>
+    <Property Name="idTiporegistro" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero" Type="Int32" />
+    <NavigationProperty Name="CuentaContables" Relationship="Self.FK__CuentaCon__TipoR__35BCFE0A" FromRole="TipoReflejar" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="TipoSolicitud">
+    <Key>
+      <PropertyRef Name="idTipoSolicitud" />
+    </Key>
+    <Property Name="idTipoSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CuentaContables" Relationship="Self.FK__CuentaCon__TipoS__33D4B598" FromRole="TipoSolicitud" ToRole="CuentaContable" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contrasena" Type="Int32" Nullable="false" />
+    <Property Name="rol_id" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK__Usuario__fecha_a__300424B4" FromRole="Usuario" ToRole="Persona" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK__Usuario__rol_id__30F848ED" FromRole="Usuario" ToRole="Rol" />
+  </EntityType>
+  <Association Name="FK__CuentaCon__TipoM__34C8D9D1">
+    <End Role="TipoMoneda" Type="Self.TipoMoneda" Multiplicity="1" />
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoMoneda">
+        <PropertyRef Name="idTipoMoneda" />
+      </Principal>
+      <Dependent Role="CuentaContable">
+        <PropertyRef Name="TipoMoneda_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CuentaCon__TipoR__35BCFE0A">
+    <End Role="TipoReflejar" Type="Self.TipoReflejar" Multiplicity="1" />
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoReflejar">
+        <PropertyRef Name="idTiporegistro" />
+      </Principal>
+      <Dependent Role="CuentaContable">
+        <PropertyRef Name="TipoRegistro_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CuentaCon__TipoS__33D4B598">
+    <End Role="TipoSolicitud" Type="Self.TipoSolicitud" Multiplicity="1" />
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoSolicitud">
+        <PropertyRef Name="idTipoSolicitud" />
+      </Principal>
+      <Dependent Role="CuentaContable">
+        <PropertyRef Name="TipoSolicitud_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdenProd__cuent__3A81B327">
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="1" />
+    <End Role="OrdenProduccion" Type="Self.OrdenProduccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentaContable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdenProduccion">
+        <PropertyRef Name="cuenta_contable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Proyeccio__cuent__48CFD27E">
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="1" />
+    <End Role="ProyeccionGastos" Type="Self.ProyeccionGasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentaContable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProyeccionGastos">
+        <PropertyRef Name="cuenta_contable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Proyeccio__cuent__4D94879B">
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="1" />
+    <End Role="ProyeccionVentas" Type="Self.ProyeccionVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentaContable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProyeccionVentas">
+        <PropertyRef Name="cuenta_contable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RegistroG__cuent__3F466844">
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="1" />
+    <End Role="RegistroGastos" Type="Self.RegistroGasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentaContable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistroGastos">
+        <PropertyRef Name="cuenta_contable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RegistroV__cuent__440B1D61">
+    <End Role="CuentaContable" Type="Self.CuentaContable" Multiplicity="1" />
+    <End Role="RegistroVentas" Type="Self.RegistroVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentaContable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegistroVentas">
+        <PropertyRef Name="cuenta_contable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__fecha_a__300424B4">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idCedula" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__rol_id__30F848ED">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CuentaContables" EntityType="Self.CuentaContable" />
+    <EntitySet Name="OrdenProduccions" EntityType="Self.OrdenProduccion" />
+    <EntitySet Name="Personas" EntityType="Self.Persona" />
+    <EntitySet Name="ProyeccionGastos" EntityType="Self.ProyeccionGasto" />
+    <EntitySet Name="ProyeccionVentas" EntityType="Self.ProyeccionVenta" />
+    <EntitySet Name="RegistroGastos" EntityType="Self.RegistroGasto" />
+    <EntitySet Name="RegistroVentas" EntityType="Self.RegistroVenta" />
+    <EntitySet Name="Rols" EntityType="Self.Rol" />
+    <EntitySet Name="TipoMonedas" EntityType="Self.TipoMoneda" />
+    <EntitySet Name="TipoReflejars" EntityType="Self.TipoReflejar" />
+    <EntitySet Name="TipoSolicituds" EntityType="Self.TipoSolicitud" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__CuentaCon__TipoM__34C8D9D1" Association="Self.FK__CuentaCon__TipoM__34C8D9D1">
+      <End Role="TipoMoneda" EntitySet="TipoMonedas" />
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CuentaCon__TipoR__35BCFE0A" Association="Self.FK__CuentaCon__TipoR__35BCFE0A">
+      <End Role="TipoReflejar" EntitySet="TipoReflejars" />
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CuentaCon__TipoS__33D4B598" Association="Self.FK__CuentaCon__TipoS__33D4B598">
+      <End Role="TipoSolicitud" EntitySet="TipoSolicituds" />
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdenProd__cuent__3A81B327" Association="Self.FK__OrdenProd__cuent__3A81B327">
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+      <End Role="OrdenProduccion" EntitySet="OrdenProduccions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Proyeccio__cuent__48CFD27E" Association="Self.FK__Proyeccio__cuent__48CFD27E">
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+      <End Role="ProyeccionGastos" EntitySet="ProyeccionGastos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Proyeccio__cuent__4D94879B" Association="Self.FK__Proyeccio__cuent__4D94879B">
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+      <End Role="ProyeccionVentas" EntitySet="ProyeccionVentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroG__cuent__3F466844" Association="Self.FK__RegistroG__cuent__3F466844">
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+      <End Role="RegistroGastos" EntitySet="RegistroGastos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RegistroV__cuent__440B1D61" Association="Self.FK__RegistroV__cuent__440B1D61">
+      <End Role="CuentaContable" EntitySet="CuentaContables" />
+      <End Role="RegistroVentas" EntitySet="RegistroVentas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__fecha_a__300424B4" Association="Self.FK__Usuario__fecha_a__300424B4">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__rol_id__30F848ED" Association="Self.FK__Usuario__rol_id__30F848ED">
+      <End Role="Rol" EntitySet="Rols" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SistemaFinanciero.Models.TipoReflejar>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mb-4">
+    <div class="col-lg-12 col-md-6 mb-md-0 mb-4">
+        <div class="card">
+            <div class="card-header pb-0">
+                <div class="row">
+                    <div class="col-lg-6 col-7">
+                        <h6>Tipos de reflejar</h6>
+                        @if (Session["Rol"].ToString() == "1"){@Html.ActionLink("Create New", "Create")}
+                    </div>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                        <thead class="mb-0 text-sm">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.numero)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="mb-0 text-sm">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.numero)
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Actions">
+                                            @if (Session["Rol"].ToString() == "1")
+                                            {@Html.ActionLink("Edit", "Edit", new { id = item.idTiporegistro }, new { @class = "btn btn-sm btn-primary" })}
+                                            @Html.ActionLink("Details", "Details", new { id = item.idTiporegistro }, new { @class = "btn btn-sm btn-info" })
+                                            @if (Session["Rol"].ToString() == "1")
+                                            {@Html.ActionLink("Delete", "Delete", new { id = item.idTiporegistro }, new { @class = "btn btn-sm btn-danger" })}
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

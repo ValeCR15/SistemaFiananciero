@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Views",
+    "\\Views\\CuentaContables",
+    "\\Views\\Home",
+    "\\Views\\Shared",
+    "\\Views\\TipoMonedas",
+    "\\Views\\TipoSolicituds"
+  ],
+  "SelectedNode": "\\Web.config",
+  "PreviewInSolutionExplorer": false
+}

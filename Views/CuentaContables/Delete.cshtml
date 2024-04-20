@@ -1,0 +1,92 @@
+﻿@model SistemaFinanciero.Models.CuentaContable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <h4>Cuenta Contable</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.codigo)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.codigo)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fecha_solicitud)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fecha_solicitud)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.MedioEnvio)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.MedioEnvio)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.EntidadSolicitante)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.EntidadSolicitante)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Justificacion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Justificacion)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Correo)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Correo)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TipoMoneda.Descripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TipoMoneda.Descripcion)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TipoReflejar.nombre)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TipoReflejar.nombre)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TipoSolicitud.Descripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.TipoSolicitud.Descripcion)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        }
+    </div>
+</div>

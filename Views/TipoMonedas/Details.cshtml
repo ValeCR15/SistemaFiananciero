@@ -1,0 +1,28 @@
+﻿@model SistemaFinanciero.Models.TipoMoneda
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Tipo Moneda</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+        </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idTipoMoneda }, new { @class = "btn btn-danger" }) |
+            @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-danger" })
+        </p>
+
+    </div>
+</div>
+<br>

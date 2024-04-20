@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SistemaFinancieroModelStoreContainer" CdmEntityContainer="SFEntities">
+    <EntitySetMapping Name="CuentaContables">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.CuentaContable">
+        <MappingFragment StoreEntitySet="CuentaContable">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="MedioEnvio" ColumnName="MedioEnvio" />
+          <ScalarProperty Name="EntidadSolicitante" ColumnName="EntidadSolicitante" />
+          <ScalarProperty Name="Justificacion" ColumnName="Justificacion" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="TipoSolicitud_id" ColumnName="TipoSolicitud_id" />
+          <ScalarProperty Name="TipoMoneda_id" ColumnName="TipoMoneda_id" />
+          <ScalarProperty Name="TipoRegistro_id" ColumnName="TipoRegistro_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdenProduccions">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.OrdenProduccion">
+        <MappingFragment StoreEntitySet="OrdenProduccion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="costo_total" ColumnName="costo_total" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="cuenta_contable_id" ColumnName="cuenta_contable_id" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personas">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.Persona">
+        <MappingFragment StoreEntitySet="Persona">
+          <ScalarProperty Name="idCedula" ColumnName="idCedula" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="fechadenacimiento" ColumnName="fechadenacimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProyeccionGastos">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.ProyeccionGasto">
+        <MappingFragment StoreEntitySet="ProyeccionGastos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto_proyectado" ColumnName="monto_proyectado" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="cuenta_contable_id" ColumnName="cuenta_contable_id" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProyeccionVentas">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.ProyeccionVenta">
+        <MappingFragment StoreEntitySet="ProyeccionVentas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto_proyectado" ColumnName="monto_proyectado" />
+          <ScalarProperty Name="producto" ColumnName="producto" />
+          <ScalarProperty Name="cuenta_contable_id" ColumnName="cuenta_contable_id" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegistroGastos">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.RegistroGasto">
+        <MappingFragment StoreEntitySet="RegistroGastos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="proveedor" ColumnName="proveedor" />
+          <ScalarProperty Name="cuenta_contable_id" ColumnName="cuenta_contable_id" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegistroVentas">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.RegistroVenta">
+        <MappingFragment StoreEntitySet="RegistroVentas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="cliente" ColumnName="cliente" />
+          <ScalarProperty Name="cuenta_contable_id" ColumnName="cuenta_contable_id" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rols">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoMonedas">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.TipoMoneda">
+        <MappingFragment StoreEntitySet="TipoMoneda">
+          <ScalarProperty Name="idTipoMoneda" ColumnName="idTipoMoneda" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoReflejars">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.TipoReflejar">
+        <MappingFragment StoreEntitySet="TipoReflejar">
+          <ScalarProperty Name="idTiporegistro" ColumnName="idTiporegistro" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoSolicituds">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.TipoSolicitud">
+        <MappingFragment StoreEntitySet="TipoSolicitud">
+          <ScalarProperty Name="idTipoSolicitud" ColumnName="idTipoSolicitud" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="SistemaFinancieroModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

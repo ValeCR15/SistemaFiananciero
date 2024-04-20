@@ -1,0 +1,60 @@
+﻿@model SistemaFinanciero.Models.ProyeccionVenta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4>ProyeccionVenta</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fecha)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fecha)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.monto_proyectado)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.monto_proyectado)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.producto)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.producto)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fecha_creacion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fecha_creacion)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.fecha_actualizacion)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.fecha_actualizacion)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.CuentaContable.codigo)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CuentaContable.codigo)
+            </dd>
+        </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-danger" }) |
+            @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-danger" })
+        </p>
+    </div>
+</div>

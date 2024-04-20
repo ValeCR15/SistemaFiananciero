@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f731a6b7a4543498e21d5c321a3b919" Name="Diagram1">
+        <EntityTypeShape EntityType="SistemaFinancieroModel.CuentaContable" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.OrdenProduccion" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.Persona" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.ProyeccionGasto" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.ProyeccionVenta" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.RegistroGasto" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.RegistroVenta" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.Rol" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.TipoMoneda" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.TipoReflejar" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.TipoSolicitud" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaFinancieroModel.Usuario" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__CuentaCon__TipoM__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__CuentaCon__TipoR__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__CuentaCon__TipoS__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__OrdenProd__cuent__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__Proyeccio__cuent__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__Proyeccio__cuent__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__RegistroG__cuent__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__RegistroV__cuent__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__Usuario__fecha_a__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaFinancieroModel.FK__Usuario__rol_id__30F848ED" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

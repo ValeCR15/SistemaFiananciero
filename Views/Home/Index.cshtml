@@ -1,0 +1,471 @@
+﻿@model IEnumerable<SistemaFinanciero.Models.ModeloGraficos.Graficos>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row mt-4">
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                    <div class="chart">
+                        <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="mb-0 ">Grafico 1</h6>
+                <p class="text-sm ">Proyeccion de Ventas de productos y monto</p>
+                <hr class="dark horizontal">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2  ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                    <div class="chart">
+                        <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="mb-0 ">Grafico 2</h6>
+                <p class="text-sm ">Proyeccion de Ventas por fecha y monto</p>
+                <hr class="dark horizontal">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-4 mb-3">
+        <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+                    <div class="chart">
+                        <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="mb-0 ">Grafico 3</h6>
+                <p class="text-sm ">Proyeccion de Ventas de productos y monto</p>
+                <hr class="dark horizontal">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-4">
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                    <div class="chart">
+                        <canvas id="charts-bars-g" class="chart-canvas" height="170"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="mb-0 ">Grafico 4</h6>
+                <p class="text-sm ">Proyeccion de gastos de categoria y monto</p>
+                <hr class="dark horizontal">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2  ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                    <div class="chart">
+                        <canvas id="chart-line-g" class="chart-canvas" height="170"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="mb-0 ">Grafico 5</h6>
+                <p class="text-sm ">Proyeccion de Gastos por fecha y monto</p>
+                <hr class="dark horizontal">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mt-4 mb-3">
+        <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+                    <div class="chart">
+                        <canvas id="chart-line-tasks-g" class="chart-canvas" height="170"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h6 class="mb-0 ">Grafico 6</h6>
+                <p class="text-sm ">Proyeccion de GAstos de categoria y monto</p>
+                <hr class="dark horizontal">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+
+<canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+
+
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById("chart-bars").getContext("2d");
+
+        var labels = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionVenta.producto)));
+        var data = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionVenta.monto_proyectado)));
+
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Monto Proyectado",
+                    tension: 0.4,
+                    borderWidth: 0,
+                    borderRadius: 4,
+                    borderSkipped: false,
+                    backgroundColor: "rgba(255, 255, 255, .8)",
+                    data: data,
+                    maxBarThickness: 6
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            display: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                            borderDash: [5, 5],
+                            color: 'rgba(255, 255, 255, .2)'
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: Math.max(...data) + 100, // Ajusta el rango según los datos
+                            beginAtZero: true,
+                            padding: 10,
+                            font: {
+                                size: 14,
+                                weight: 300,
+                                family: "Roboto",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                            color: "#fff"
+                        },
+                    },
+                    x: {
+                        grid: {
+                            drawBorder: false,
+                            display: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                            borderDash: [5, 5],
+                            color: 'rgba(255, 255, 255, .2)'
+                        },
+                        ticks: {
+                            display: true,
+                            color: '#f8f9fa',
+                            padding: 10,
+                            font: {
+                                size: 14,
+                                weight: 300,
+                                family: "Roboto",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                        }
+                    },
+                },
+            },
+        });
+
+
+    </script>
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<script>
+
+    var ctx = document.getElementById("charts-bars-g").getContext("2d");
+
+    @{
+        var datosValidos = Model.Where(x => x.ProyeccionGasto != null && x.ProyeccionGasto.monto_proyectado != null && x.ProyeccionGasto.categoria != null);
+    } 
+
+        var labels = @Html.Raw(Json.Encode(datosValidos.Select(x => x.ProyeccionGasto.categoria)));
+        var data = @Html.Raw(Json.Encode(datosValidos.Select(x => x.ProyeccionGasto.monto_proyectado)));
+
+        new Chart(ctx, {
+        type: "bar",
+    data: {
+            labels: labels,
+        datasets: [{
+                label: "Monto Proyectado",
+            tension: 0.4,
+            borderWidth: 0,
+            borderRadius: 4,
+            borderSkipped: false,
+            backgroundColor: "rgba(255, 255, 255, .8)",
+            data: data,
+            maxBarThickness: 6
+        }],
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            }
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index',
+        },
+        scales: {
+            y: {
+                grid: {
+                    drawBorder: false,
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: false,
+                    borderDash: [5, 5],
+                    color: 'rgba(255, 255, 255, .2)'
+                },
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: Math.max(...data) + 100, // Ajusta el rango según los datos
+                    beginAtZero: true,
+                    padding: 10,
+                    font: {
+                        size: 14,
+                        weight: 300,
+                        family: "Roboto",
+                        style: 'normal',
+                        lineHeight: 2
+                    },
+                    color: "#fff"
+                },
+            },
+            x: {
+                grid: {
+                    drawBorder: false,
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: false,
+                    borderDash: [5, 5],
+                    color: 'rgba(255, 255, 255, .2)'
+                },
+                ticks: {
+                    display: true,
+                    color: '#f8f9fa',
+                    padding: 10,
+                    font: {
+                        size: 14,
+                        weight: 300,
+                        family: "Roboto",
+                        style: 'normal',
+                        lineHeight: 2
+                    },
+                }
+            },
+        },
+    },
+});
+
+</script>
+
+
+<script>
+
+    var ctxLine = document.getElementById("chart-line").getContext("2d");
+    var fechasUnix = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionVenta.fecha)));
+    var fechasFormateadas = fechasUnix.map(function(fechaUnix) {
+        return moment(fechaUnix).format("MM/DD/YYYY");
+    });
+    var dataLine =  @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionVenta.monto_proyectado)));
+
+    new Chart(ctxLine, {
+        type: "line",
+        data: {
+            labels: fechasFormateadas,
+            datasets: [{
+                label: "Monto Proyectado",
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 4,
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                data: dataLine,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+
+
+    var ctxLine2 = document.getElementById("chart-line-g").getContext("2d");
+    var fechasUnix2 = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionGasto.fecha)));
+    var fechasFormateadas2 = fechasUnix.map(function (fechasUnix2) {
+        return moment(fechasUnix2).format("MM/DD/YYYY");
+    });
+    var dataLine2 =  @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionGasto.monto_proyectado)));
+
+    new Chart(ctxLine2, {
+        type: "line",
+        data: {
+            labels: fechasFormateadas2,
+            datasets: [{
+                label: "Monto Proyectado",
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 4,
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                data: dataLine2,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+
+
+   var ctxLineTasks = document.getElementById("chart-line-tasks").getContext("2d");
+
+    var labelsLineTasks = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionVenta.producto)));
+    var dataLineTasks = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionVenta.monto_proyectado)));
+
+    // Array de colores que quieres usar
+    var colores = [
+      "rgba(255, 99, 132, 0.8)",   // Color 1
+      "rgba(54, 162, 235, 0.8)",   // Color 2
+      "rgba(255, 206, 86, 0.8)",   // Color 3
+      "rgba(75, 192, 192, 0.8)",   // Color 4
+      "rgba(153, 102, 255, 0.8)",  // Color 5
+    ];
+
+    new Chart(ctxLineTasks, {
+        type: "doughnut",
+        data: {
+            labels: labelsLineTasks,
+            datasets: [{
+                label: "Monto Proyectado",
+                tension: 0.4,
+                borderWidth: 0,
+                borderRadius: 4,
+                borderSkipped: false,
+                backgroundColor: colores, // Usando el array de colores
+                borderColor: "rgba(255, 255, 255, 255)",
+                data: dataLineTasks,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+
+
+    var ctxLineTasks2 = document.getElementById("chart-line-tasks-g").getContext("2d");
+
+ var labelsLineTasks2 = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionGasto.categoria)));
+ var dataLineTasks2 = @Html.Raw(Json.Encode(Model.Select(x => x.ProyeccionGasto.monto_proyectado)));
+
+ // Array de colores que quieres usar
+ var colores = [
+   "rgba(255, 99, 132, 0.8)",   // Color 1
+   "rgba(54, 162, 235, 0.8)",   // Color 2
+   "rgba(255, 206, 86, 0.8)",   // Color 3
+   "rgba(75, 192, 192, 0.8)",   // Color 4
+   "rgba(153, 102, 255, 0.8)",  // Color 5
+ ];
+
+ new Chart(ctxLineTasks2, {
+     type: "doughnut",
+     data: {
+         labels: labelsLineTasks2,
+         datasets: [{
+             label: "Monto Proyectado",
+             tension: 0.4,
+             borderWidth: 0,
+             borderRadius: 4,
+             borderSkipped: false,
+             backgroundColor: colores, // Usando el array de colores
+             borderColor: "rgba(255, 255, 255, 255)",
+             data: dataLineTasks2,
+         }],
+     },
+     options: {
+         responsive: true,
+         maintainAspectRatio: false,
+         plugins: {
+             legend: {
+                 display: false,
+             }
+         },
+         scales: {
+             x: {
+                 beginAtZero: true,
+             },
+         },
+     },
+ });
+
+</script>
